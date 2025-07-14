@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.SE12345DAO;
 import dao.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import model.SE12345;
 import model.User;
 
 /**
@@ -161,6 +163,9 @@ public class UserServlet extends HttpServlet {
 
         userDAO.insert(user);
         
+        // Test
+        new SE12345DAO().insert(new SE12345("C001", "HP Computer", 31, true));
+        
         request.setAttribute("success", "Thêm user thành công!");
         response.sendRedirect("user?action=list");
     }
@@ -182,6 +187,9 @@ public class UserServlet extends HttpServlet {
         user.setPassword(password);
 
         userDAO.update(user);
+        
+        // Test
+        new SE12345DAO().update(new SE12345("C001", "HP Computer 2", 32, false));
         
         request.setAttribute("success", "Cập nhật user thành công!");
         response.sendRedirect("user?action=list");
